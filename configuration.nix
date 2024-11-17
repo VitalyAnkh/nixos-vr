@@ -31,6 +31,9 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
+    bottom
+    neovim
+    zoxide
     fish
     fd
     ripgrep
@@ -38,8 +41,10 @@
     cargo
     git
     pkgs.gnomeExtensions.appindicator
+    cudaPackages.cudatoolkit
     pkgs.gnomeExtensions.quake-terminal
     pkgs.gnomeExtensions.clipboard-history
+    pkgs.gnomeExtensions.kimpanel
     kdiskmark
     vim
     wget
@@ -59,6 +64,7 @@
    tunMode = true;
   }; 
 
+  programs.fish.enable = true;
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -91,7 +97,7 @@
        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
     }))
   ];
-  
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -126,14 +132,18 @@
       tree
       #wechat-uos
     ];
+    shell = pkgs.fish;
   };
 
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;
     fcitx5.addons = with pkgs; [
-      fcitx5-mozc
+      #fcitx5-mozc
       fcitx5-gtk
+      fcitx5-nord
+      fcitx5-rime
+      fcitx5-chinese-addons
     ];
   };  
 
@@ -184,7 +194,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-    powerManagement.enable = true;
+    powerManagement.enable = false;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -204,7 +214,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,

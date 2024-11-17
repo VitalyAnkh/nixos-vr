@@ -94,6 +94,11 @@
     enable = true;
     userName = "VitalyR";
     userEmail = "vr@vitalyr.com";
+    aliases = {
+      br = "branch";
+      co = "checkout";
+      st = "status";
+    };
   };
 
   # 启用 starship，这是一个漂亮的 shell 提示符
@@ -138,6 +143,8 @@
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
     };
   };
+
+  programs.zoxide.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
