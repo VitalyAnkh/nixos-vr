@@ -16,8 +16,15 @@
             unstable = import <nixos-unstable> {
                 config = config.nixpkgs.config;
             };
+
+
+            blender = pkgs.blender.override {
+                cudaSupport = true;
+            };
+
         };
   };
+
   nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" "https://mirrors.ustc.edu.cn/nix-channels/store" ];
 
   # Use the systemd-boot EFI boot loader.
@@ -31,13 +38,20 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
+    blender
     bottom
+    elan
+    obs-studio
     neovim
+    nvtopPackages.full
     zoxide
     fish
+    jetbrains-mono
+    jetbrains-toolbox
     fd
     ripgrep
     rustc
+    rustup
     cargo
     git
     pkgs.gnomeExtensions.appindicator
@@ -45,7 +59,9 @@
     pkgs.gnomeExtensions.quake-terminal
     pkgs.gnomeExtensions.clipboard-history
     pkgs.gnomeExtensions.kimpanel
+    #mission-center
     kdiskmark
+    lean4
     vim
     wget
     curl

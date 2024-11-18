@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -22,8 +22,11 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+
+          #./editor/emacs/default.nix
           
-          #agenix.nixosModules.default
+          agenix.nixosModules.default
+
           #{
           #environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
           #}
@@ -37,8 +40,6 @@
 
             home-manager.users.vitalyr = import ./home.nix;
 
-            # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
-            # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
             home-manager.extraSpecialArgs = inputs;
           }
         
