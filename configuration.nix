@@ -62,7 +62,6 @@
     #mission-center
     kdiskmark
     lean4
-    vim
     wget
     curl
     firefox-devedition
@@ -144,7 +143,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      firefox
       tree
       #wechat-uos
     ];
@@ -165,10 +163,6 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
-  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -181,7 +175,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -210,7 +204,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
