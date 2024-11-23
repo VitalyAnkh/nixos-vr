@@ -12,6 +12,8 @@
 
   nixpkgs.config = {
         allowUnfree = true;
+	# mitigate "x86_64-unknown-linux-gnu" and "x86_64-linux" mismatch with some packages, e.g. nvtop
+	allowUnsupportedSystem = true;
         packageOverrides = pkgs: {
             unstable = import <nixos-unstable> {
                 config = config.nixpkgs.config;
@@ -25,24 +27,32 @@
         };
   };
 
-  nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" "https://mirrors.ustc.edu.cn/nix-channels/store" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" "https://mirrors.ustc.edu.cn/nix-channels/store" ];
+    trusted-users = [ "root" "@wheel" ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "bcachefs" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   networking.hostName = "eva";
   # networking.wireless.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
     blender
     bottom
     elan
     obs-studio
+    kdePackages.okular
+    lact
+    microsoft-edge
     neovim
+    nixfmt-rfc-style
     nvtopPackages.full
     zoxide
     fish
@@ -54,17 +64,18 @@
     rustup
     cargo
     git
-    pkgs.gnomeExtensions.appindicator
+    gnomeExtensions.appindicator
+    gnome-extension-manager
     cudaPackages.cudatoolkit
-    pkgs.gnomeExtensions.quake-terminal
-    pkgs.gnomeExtensions.clipboard-history
-    pkgs.gnomeExtensions.kimpanel
+    gnomeExtensions.quake-terminal
+    gnomeExtensions.clipboard-history
+    gnomeExtensions.kimpanel
     #mission-center
     kdiskmark
     lean4
     wget
     curl
-    firefox-devedition
+    #firefox-devedition
     clash-verge-rev
     gcc
     telegram-desktop

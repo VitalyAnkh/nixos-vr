@@ -14,6 +14,7 @@
     };
     xremap-flake.url = "github:xremap/nix-flake";
     agenix.url = "github:yaxitech/ragenix";
+    firefox.url = "github:nix-community/flake-firefox-nightly";
   };
 
   outputs = inputs@{ nixpkgs, home-manager, agenix, ... }: {
@@ -27,9 +28,12 @@
           
           agenix.nixosModules.default
 
-          #{
-          #environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
-          #}
+          {
+            environment.systemPackages = [
+	      agenix.packages.x86_64-linux.default
+	      inputs.firefox.packages.x86_64-linux.firefox-nightly-bin
+	    ];
+          }
 
           # 将 home-manager 配置为 nixos 的一个 module
           # 这样在 nixos-rebuild switch 时，home-manager 配置也会被自动部署
@@ -46,7 +50,6 @@
         inputs.xremap-flake.nixosModules.default
         /* This is effectively an inline module */
         {
-          users.users.root.password = "vrhh0319";
           system.stateVersion = "24.05";
 
           # Modmap for single key rebinds
