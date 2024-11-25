@@ -77,6 +77,7 @@
     curl
     #firefox-devedition
     clash-verge-rev
+    clash-nyanpasu
     gcc
     telegram-desktop
     qq
@@ -84,8 +85,8 @@
   ];
 
   programs.clash-verge = {
-   package = pkgs.clash-verge-rev;
-   autoStart = true;
+   package = pkgs.clash-nyanpasu;
+   #autoStart = true;
    enable = true;
    tunMode = true;
   }; 
