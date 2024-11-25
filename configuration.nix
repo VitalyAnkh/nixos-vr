@@ -84,12 +84,12 @@
     warp-terminal
   ];
 
-  programs.clash-verge = {
-   package = pkgs.clash-nyanpasu;
+  #programs.clash-verge = {
+  # package = pkgs.clash-nyanpasu;
    #autoStart = true;
-   enable = true;
-   tunMode = true;
-  }; 
+  # enable = true;
+  # tunMode = true;
+  #}; 
 
   programs.fish.enable = true;
 
