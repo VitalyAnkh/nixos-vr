@@ -20,6 +20,7 @@
     # enabling it is required to make Wayland compositors function properly.
     "nvidia-drm.fbdev=1"
     "amdgpu.dcdebugmask=0x10"
+    "module_blacklist=amdgpu"
   ];
 
   fileSystems."/" =
