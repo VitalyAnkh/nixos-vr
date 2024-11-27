@@ -14,6 +14,14 @@
   boot.kernelModules = [ "kvm-amd" "nvidia" ];
   boot.extraModulePackages = [ ];
 
+  boot.kernelParams = [
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    # Since NVIDIA does not load kernel mode setting by default,
+    # enabling it is required to make Wayland compositors function properly.
+    "nvidia-drm.fbdev=1"
+    "amdgpu.dcdebugmask=0x10"
+  ];
+
   fileSystems."/" =
     { device = "UUID=49cfe182-ff8a-4825-adbd-de98622d6ec1";
       fsType = "bcachefs";
