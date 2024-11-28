@@ -13,6 +13,7 @@
   #boot.kernelModules = [ "kvm-amd" "nvidia" "nvidia-uvm" ];
   boot.kernelModules = [ "kvm-amd" "nvidia" ];
   boot.extraModulePackages = [ ];
+  boot.loader.systemd-boot.memtest86.enable = true;
 
   boot.kernelParams = [
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"

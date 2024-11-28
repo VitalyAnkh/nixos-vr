@@ -46,6 +46,7 @@
   environment.systemPackages = with pkgs; [
     blender
     bottom
+    cpu-x
     elan
     obs-studio
     kdePackages.okular
