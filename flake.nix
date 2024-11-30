@@ -1,4 +1,6 @@
 {
+  # nix version above 2.20 has a bug: https://github.com/NixOS/nix/issues/10575
+  # use this command to mitigate this: nix run nixpkgs#nixVersions.nix_2_20 -- build .#nixosConfigurations.eva.config.system.build.toplevel -I nixos-config=./configuration.nix
   description = "NixOS configuration";
 
   inputs = {
