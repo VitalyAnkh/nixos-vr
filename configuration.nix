@@ -55,6 +55,7 @@
     neovim
     nixfmt-rfc-style
     nvtopPackages.full
+    netease-cloud-music-gtk
     zoxide
     fish
     jetbrains-mono
