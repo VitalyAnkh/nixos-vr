@@ -74,6 +74,7 @@
     #mission-center
     kdiskmark
     lean4
+    warzone2100
     wget
     curl
     #firefox-devedition
@@ -83,6 +84,7 @@
     telegram-desktop
     qq
     warp-terminal
+    furmark
   ];
 
   #programs.clash-verge = {
