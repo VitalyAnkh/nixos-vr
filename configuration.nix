@@ -72,7 +72,7 @@
     gnomeExtensions.quake-terminal
     gnomeExtensions.clipboard-history
     gnomeExtensions.kimpanel
-    #mission-center
+    mission-center
     kdiskmark
     lean4
     warzone2100
@@ -85,6 +85,7 @@
     telegram-desktop
     qq
     warp-terminal
+    yesplaymusic
     furmark
   ];
 
