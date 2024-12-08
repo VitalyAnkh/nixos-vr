@@ -52,7 +52,6 @@
         inputs.xremap-flake.nixosModules.default
         /* This is effectively an inline module */
         {
-          system.stateVersion = "24.05";
 
           # Modmap for single key rebinds
           services.xremap.config.modmap = [

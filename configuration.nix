@@ -84,6 +84,7 @@
     gcc
     telegram-desktop
     qq
+    spotifyd
     warp-terminal
     yesplaymusic
     furmark
